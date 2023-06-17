@@ -30,10 +30,27 @@ def home(request):
 
 
 def about(request):
-    return render(request, "about-us.html")
+    about = models.About.objects.last()
+    tools = models.Tool.objects.all()
+    context = {
+        "about": about,
+        "tools": tools
+    }
+    return render(request, "about-us.html", context)
 
 
 class PostListView(generic.ListView):
     model = models.Post
     context_object_name = "posts"
     template_name = "blog.html"
+
+
+
+def portfolio(request):
+    categories = models.Category.objects.all()
+    portfolis = models.Project.objects.all()
+    context = {
+        "projects": portfolis,
+        "categories": categories
+    }
+    return render(request, "portfolio.html", context)
