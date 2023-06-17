@@ -91,3 +91,5 @@ class Project(BaseModel):
     description = models.TextField()
     categories = models.ManyToManyField(Category)
 
+
+
